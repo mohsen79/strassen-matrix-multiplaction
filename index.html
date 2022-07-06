@@ -1,0 +1,67 @@
+<script>
+	//the matrix is 4 * 4
+    const N = 4;
+    var m1, m2, m3, m4, m5, m6, m7;
+
+	//storing the matrix index
+    function organizing(a, b) {
+        var A11 = [a[0][0], a[0][1], a[1][0], a[1][1]];
+        var A12 = [a[0][2], a[0][3], a[1][2], a[1][3]];
+        var A21 = [a[2][0], a[2][1], a[3][0], a[3][1]];
+        var A22 = [a[2][2], a[2][3], a[3][2], a[3][3]];
+
+        var B11 = [b[0][0], b[0][1], b[1][0], b[1][1]];
+        var B12 = [b[0][2], b[0][3], b[1][2], b[1][3]];
+        var B21 = [b[2][0], b[2][1], b[3][0], b[3][1]];
+        var B22 = [b[2][2], b[2][3], b[3][2], b[3][3]];
+
+        for (let i = 0; i < 3; i++) {
+            for (let j = 0; j < 3; j++) {
+                m1 = (A11[i][j] + A22[i][j]) * (B11[i][j] + B22[i][j]);
+            }
+        }
+     
+    }
+
+	//multiplaction operating
+    function multiplaction(a, b, result) {
+        let i, j, k;
+        for (i = 0; i < N; i++) {
+            for (j = 0; j < N; j++) {
+                result[i][j] = 0;
+                for (k = 0; k < N; k++)
+                    result[i][j] += a[i][k] * b[k][j];
+            }
+        }
+    }
+
+    let i, j;
+
+    let result = new Array(N);
+    for (let k = 0; k < N; k++)
+        result[k] = new Array(N);
+
+    let a = [
+        [6, 3 ,1, 0],
+        [9, 1, 6, 4],
+        [8, 3, 2, 1],
+        [7, 4, 5, 6]
+    ];
+
+    let b = [
+        [2, 4, 0, 1],
+        [3, 1, 9, 6],
+        [3, 5, 8, 7],
+        [6, 2, 5, 4]
+    ];
+
+    organizing(a, b);
+    multiplaction(a, b, result);
+
+    document.write("result matrix is <br>");
+    for (i = 0; i < N; i++) {
+        for (j = 0; j < N; j++)
+            document.write(result[i][j] + " ");
+        document.write("<br>");
+    }
+</script>
